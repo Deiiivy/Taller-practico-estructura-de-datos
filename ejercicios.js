@@ -1,204 +1,341 @@
-// https://developer.mozilla.org/es/docs/Web/JavaScript
+// Taller de JavaScript Completo - Versión Consolidada
 
-// Punto 1 - declaración de variables y constantes
-let edad = 25;
-const nombre = "Deivy";
+/**************************************
+ * 1. Sintaxis, variables y tipos de datos
+ *************************************/
+// URL oficial: https://developer.mozilla.org/es/docs/Web/JavaScript
 
-// Punto 1 - tipos de datos primitivos en JavaScript
-const entero = 12;
-const float = 12.5;
-const string = "Hola";
+// Comentarios
+/* Esto es un comentario 
+   multilínea */
+
+// Variables y constantes
+let variable = "puede cambiar";
+const constante = "no cambia";
+
+// Tipos de datos
+const cadena = "texto";
+const numero = 42;
 const booleano = true;
 const nulo = null;
 const indefinido = undefined;
-const simbolo = Symbol("simbolo");
-const bigInt = 12345678901234567890n;
+const simbolo = Symbol('descripcion');
+const objeto = { clave: "valor" };
+const array = [1, 2, 3];
 
-// Punto 1 - imprimir "Hola, JavaScript!" en la consola
+// Hola mundo
 console.log("¡Hola, JavaScript!");
 
-// Punto 2 - Operadores y estructuras de control
-let suma = entero + float;
-let resta = entero - float;
-let multiplicacion = entero * float;
-let division = entero / float;
-let modulo = entero % 5;
-let exponente = entero ** 2;
-
-console.log(suma, resta, multiplicacion, division, modulo, exponente);
+/**************************************
+ * 2. Operadores y estructuras de control
+ *************************************/
+// Operadores aritméticos
+console.log(10 + 5);  // 15
+console.log(10 - 5);  // 5
+console.log(10 * 5);  // 50
+console.log(10 / 5);  // 2
+console.log(10 % 3);  // 1 (módulo)
+console.log(2 ** 3);  // 8 (exponenciación)
 
 // Operadores de comparación
-console.log(entero > float, entero < float, entero == "12", entero === "12");
+console.log(5 == "5");   // true (igualdad)
+console.log(5 === "5");  // false (igualdad estricta)
+console.log(5 != "5");   // false
+console.log(5 !== "5");  // true
+console.log(5 > 3);      // true
+console.log(5 < 3);      // false
 
 // Operadores lógicos
-console.log(booleano && false, booleano || false, !booleano);
+console.log(true && false); // AND: false
+console.log(true || false); // OR: true
+console.log(!true);        // NOT: false
 
-// Condicionales
-if (booleano) {
-    console.log("La condición es verdadera");
+// Estructuras condicionales
+if (true) {
+    console.log("Se ejecuta");
 } else {
-    console.log("La condición es falsa");
+    console.log("No se ejecuta");
 }
 
-// Estructuras iterativas
-for (let i = 0; i < 5; i++) {
-    console.log("Iteración:", i);
+// Operador ternario
+const resultado = (5 > 3) ? "mayor" : "menor";
+console.log(resultado);
+
+// Switch
+const dia = "lunes";
+switch (dia) {
+    case "lunes":
+        console.log("Inicio de semana");
+        break;
+    case "viernes":
+        console.log("Fin de semana");
+        break;
+    default:
+        console.log("Día normal");
 }
 
-let contador = 0;
-while (contador < 3) {
-    console.log("Contador:", contador);
-    contador++;
+// Bucles
+for (let i = 0; i < 3; i++) {
+    console.log("For:", i);
 }
 
-// Excepciones
-try {
-    let resultado = 10 / 0;
-    if (!isFinite(resultado)) throw new Error("División por cero");
-} catch (error) {
-    console.log("Error:", error.message);
+let j = 0;
+while (j < 3) {
+    console.log("While:", j);
+    j++;
 }
 
-// Punto 3 - Funciones y alcance
+/**************************************
+ * 3. Funciones y alcance
+ *************************************/
+// Función básica
 function saludar(nombre) {
-    return `¡Hola, ${nombre}!`;
+    return `Hola, ${nombre}`;
 }
+console.log(saludar("Juan"));
 
-console.log(saludar("Deivy"));
+// Función flecha
+const sumar = (a, b) => a + b;
+console.log(sumar(2, 3));
 
-// Variables locales y globales
-let globalVar = "Soy global";
+// Alcance de variables
+let global = "soy global";
 
-function mostrarVariable() {
-    let localVar = "Soy local";
-    console.log(globalVar);
-    console.log(localVar);
+function mostrarAlcance() {
+    let local = "soy local";
+    console.log(global); // Accede a global
+    console.log(local);  // Accede a local
 }
+mostrarAlcance();
 
-mostrarVariable();
-// console.log(localVar); // Error: localVar is not defined
+/**************************************
+ * 4. Estructuras de datos
+ *************************************/
+// Arrays
+const frutas = ["manzana", "banana"];
+frutas.push("naranja"); // Añadir
+frutas.pop();           // Quitar último
+console.log(frutas[0]); // Acceder
 
-// Punto 4 - Estructuras de datos
+// Objetos
 const persona = {
-    nombre: "Juan",
-    edad: 30,
-    ciudad: "Bogotá"
+    nombre: "Ana",
+    edad: 25,
+    saludar: function() {
+        return `Hola, soy ${this.nombre}`;
+    }
 };
-const lista = [1, 2, 3, 4, 5];
-lista.push(6);
-lista.pop();
-console.log(lista);
+console.log(persona.saludar());
 
-// Punto 5 - Cadenas de caracteres
-let texto = "JavaScript";
-console.log(texto.length);
-console.log(texto.toUpperCase());
+// Set (valores únicos)
+const miSet = new Set([1, 2, 2, 3]);
+console.log(miSet); // Set(3) {1, 2, 3}
 
-// Punto 6 - Valor y referencia
-let obj1 = { clave: "valor" };
+// Map (diccionario)
+const miMap = new Map();
+miMap.set("clave", "valor");
+console.log(miMap.get("clave")); // "valor"
+
+/**************************************
+ * 5. Manipulación de cadenas
+ *************************************/
+const texto = "JavaScript";
+
+console.log(texto.length);        // 10
+console.log(texto.toUpperCase()); // JAVASCRIPT
+console.log(texto.substring(0, 4)); // Java
+console.log(texto.includes("Script")); // true
+console.log(texto.split("a"));    // ["J", "v", "Script"]
+
+/**************************************
+ * 6. Valor vs Referencia
+ *************************************/
+// Tipos primitivos (valor)
+let a = 10;
+let b = a;
+b = 20;
+console.log(a); // 10 (no cambia)
+
+// Objetos (referencia)
+let obj1 = { valor: 10 };
 let obj2 = obj1;
-obj2.clave = "nuevo valor";
-console.log(obj1);
+obj2.valor = 20;
+console.log(obj1.valor); // 20 (cambia)
 
-// Punto 7 - Recursividad
+/**************************************
+ * 7. Recursividad
+ *************************************/
 function factorial(n) {
-    if (n === 0) return 1;
+    if (n <= 1) return 1;
     return n * factorial(n - 1);
 }
-console.log(factorial(5));
+console.log(factorial(5)); // 120
 
-// Punto 8 - Pilas y colas
-class Pila {
-    constructor() {
-        this.items = [];
-    }
-    push(elemento) {
-        this.items.push(elemento);
-    }
-    pop() {
-        return this.items.pop();
-    }
-}
+/**************************************
+ * 8. Pilas y Colas
+ *************************************/
+// Pila (LIFO)
+const pila = [];
+pila.push(1); // Añadir
+pila.push(2);
+console.log(pila.pop()); // Quitar (2)
 
-const pila = new Pila();
-pila.push(10);
-pila.push(20);
-console.log(pila.pop());
+// Cola (FIFO)
+const cola = [1, 2];
+cola.push(3); // Añadir
+console.log(cola.shift()); // Quitar (1)
 
-// Punto 9 y 10 - Clases, herencia y polimorfismo
-class Persona {
-    constructor(nombre, edad) {
+/**************************************
+ * 9. Clases
+ *************************************/
+class Animal {
+    constructor(nombre) {
         this.nombre = nombre;
-        this.edad = edad;
     }
-}
-class Estudiante extends Persona {
-    constructor(nombre, edad, curso) {
-        super(nombre, edad);
-        this.curso = curso;
+    
+    hacerSonido() {
+        return "Sonido genérico";
     }
 }
 
-const estudiante = new Estudiante("Ana", 22, "Matemáticas");
-console.log(estudiante);
+class Perro extends Animal {
+    hacerSonido() {
+        return "¡Guau!";
+    }
+}
 
-// Punto 11 - Excepciones (mejorado)
+const miPerro = new Perro("Max");
+console.log(miPerro.hacerSonido());
+
+/**************************************
+ * 10. Módulos (CommonJS)
+ *************************************/
+// Exportar (simulado)
+function sumar(a, b) { return a + b; }
+module.exports = { sumar };
+
+// Importar (simulado)
+const { sumar: importarSumar } = require('./taller.js');
+console.log(importarSumar(2, 2));
+
+/**************************************
+ * 11. Manejo de errores
+ *************************************/
 try {
-    throw new Error("Error personalizado");
+    throw new Error("Algo salió mal");
 } catch (error) {
-    console.log("Error capturado:", error.message);
+    console.error("Error capturado:", error.message);
+} finally {
+    console.log("Siempre se ejecuta");
 }
 
-// Punto 12 - Manejo de ficheros
-const fs = require('fs');
-fs.writeFileSync('archivo.txt', 'Hola, archivo');
+/**************************************
+ * 12. Asincronía
+ *************************************/
+// Callback
+function obtenerDatos(callback) {
+    setTimeout(() => callback(null, "Datos"), 100);
+}
+obtenerDatos((err, datos) => console.log(datos));
 
-// Punto 13 - JSON y XML
-const json = JSON.stringify(persona);
-console.log(json);
+// Promesa
+function promesaDatos() {
+    return new Promise(resolve => {
+        setTimeout(() => resolve("Datos con promesa"), 100);
+    });
+}
+promesaDatos().then(console.log);
 
-// Punto 14 - Pruebas unitarias
-const assert = require('assert');
-assert.strictEqual(suma(2, 3), 5);
+// Async/Await
+async function obtenerAsync() {
+    const datos = await promesaDatos();
+    console.log(datos);
+}
+obtenerAsync();
 
-// Punto 15 - Fechas
-const fecha = new Date();
-console.log(fecha);
+/**************************************
+ * 13. JSON
+ *************************************/
+const jsonStr = '{"nombre":"Carlos","edad":30}';
+const objJson = JSON.parse(jsonStr);
+console.log(objJson.nombre); // Carlos
+console.log(JSON.stringify(objJson)); // Convierte a JSON
 
-// Punto 16 - Asincronía
-async function obtenerDatos() {
-    return "Datos obtenidos";
+/**************************************
+ * 14. Expresiones regulares
+ *************************************/
+const regex = /(\w+)\s(\w+)/;
+const nombreCompleto = "Juan Pérez";
+const resultadoRegex = nombreCompleto.replace(regex, '$2, $1');
+console.log(resultadoRegex); // Pérez, Juan
+
+/**************************************
+ * 15. Métodos de arrays
+ *************************************/
+const numeros = [1, 2, 3, 4];
+
+console.log(numeros.map(n => n * 2));    // [2, 4, 6, 8]
+console.log(numeros.filter(n => n > 2)); // [3, 4]
+console.log(numeros.reduce((a, b) => a + b)); // 10
+
+/**************************************
+ * 16. Desestructuración
+ *************************************/
+const [primero, segundo] = [1, 2];
+console.log(primero); // 1
+
+const { nombre: nombrePersona } = { nombre: "Ana", edad: 25 };
+console.log(nombrePersona); // Ana
+
+/**************************************
+ * 17. Operador spread/rest
+ *************************************/
+// Spread
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4];
+console.log(arr2); // [1, 2, 3, 4]
+
+// Rest
+function sumar(...nums) {
+    return nums.reduce((a, b) => a + b);
+}
+console.log(sumar(1, 2, 3)); // 6
+
+/**************************************
+ * 18. Programación funcional
+ *************************************/
+// Funciones puras
+function pura(a, b) {
+    return a + b;
 }
 
-// Punto 17 - Expresiones regulares
-const regex = /JavaScript/i;
-console.log(regex.test("Aprender JavaScript es genial"));
+// Inmutabilidad
+const original = [1, 2, 3];
+const copia = [...original, 4];
 
-// Punto 18 - Conjuntos y mapas
-const conjunto = new Set([1, 2, 3, 4]);
-const mapa = new Map();
-mapa.set("clave", "valor");
-console.log(conjunto, mapa);
-
-// Punto 19 - Enumeraciones
-const estado = {
-    INICIO: "Inicio",
-    PROCESO: "En proceso",
-    FINALIZADO: "Finalizado"
+/**************************************
+ * 19. Proxy
+ *************************************/
+const objetivo = {};
+const manejador = {
+    get: function(obj, prop) {
+        return prop in obj ? obj[prop] : `Propiedad ${prop} no existe`;
+    }
 };
-console.log(estado);
+const proxy = new Proxy(objetivo, manejador);
+console.log(proxy.nombre); // "Propiedad nombre no existe"
 
-// Punto 20 - Peticiones HTTP
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
-    .then(data => console.log(data));
-
-// Punto 21 - Callbacks
-function operacionAsincrona(callback) {
-    setTimeout(() => {
-        callback("Operación completada");
-    }, 2000);
+/**************************************
+ * 20. Generadores
+ *************************************/
+function* generadorId() {
+    let id = 1;
+    while (true) {
+        yield id++;
+    }
 }
+const gen = generadorId();
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
 
-operacionAsincrona(console.log);
-
+console.log("¡Taller completado con éxito!");
