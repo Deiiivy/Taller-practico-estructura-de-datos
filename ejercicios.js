@@ -338,4 +338,4 @@ const gen = generadorId();
 console.log(gen.next().value); // 1
 console.log(gen.next().value); // 2
 
-console.log("¡Taller completado con éxito!");
+console.log("¡Fin!");
